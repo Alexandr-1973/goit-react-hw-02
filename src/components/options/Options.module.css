@@ -1,0 +1,10 @@
+.options {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+}
+
+.btn {
+  border: 2px solid gray;
+  border-radius: 4px;
+}

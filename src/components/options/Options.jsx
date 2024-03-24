@@ -1,26 +1,40 @@
+import css from "./Options.module.css";
 
-const Options = ({ feedbacks, handleClick }) => {
-  // const feedbacksKeys = Object.keys(feedbacks);
-  // const feedbacksValues = Object.values(feedbacks);
+const Options = ({
+  feedbacks,
+  handleClick,
+  totalFeedback,
+  upperNameButton,
+}) => {
   return (
-    <ul>
-      {/* {goo
-
-            } */}
+    <ul className={css.options}>
       {Object.keys(feedbacks).map((feedbacksKey) => {
         return (
           <li key={Math.random()}>
             <button
+              className={css.btn}
               onClick={(event) =>
-                handleClick(event.target.textContent)
+                handleClick(event.target.textContent.toLowerCase())
               }
             >
-              {feedbacksKey}
+              {upperNameButton(feedbacksKey)}
             </button>
           </li>
         );
       })}
+
+      {totalFeedback > 0 && (
+        <li>
+          <button
+            className={css.btn}
+            onClick={(event) => handleClick(event.target.textContent)}
+          >
+            Reset
+          </button>
+        </li>
+      )}
     </ul>
   );
 };
+
 export default Options;
