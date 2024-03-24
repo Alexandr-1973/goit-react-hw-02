@@ -8,3 +8,7 @@
   border: 2px solid gray;
   border-radius: 4px;
 }
+
+.btn:active {
+  background-color: gray;
+}
