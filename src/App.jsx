@@ -4,6 +4,7 @@ import Description from "./components/description/Description.jsx";
 import Options from "./components/options/Options.jsx";
 import Feedback from "./components/feedback/Feedback.jsx";
 import Notification from "./components/notification/Notification.jsx";
+import upperNameButton from "./components/utility.jsx";
 
 function App() {
   const [feedbacks, setFeedbacks] = useState(() => {
@@ -23,18 +24,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("feedbacksLsKey", JSON.stringify(feedbacks));
-  });
-
-  function upperNameButton(word) {
-    let nameButton = "";
-    for (let letter of word.split("")) {
-      if (letter === word[0]) {
-        letter = word[0].toUpperCase();
-      }
-      nameButton += letter;
-    }
-    return nameButton;
-  }
+  }, [feedbacks]);
 
   const updateFeedback = (feedbackType) => {
     if (feedbackType === "Reset") {
@@ -53,6 +43,7 @@ function App() {
 
   const { good, neutral, bad } = feedbacks;
   const totalFeedback = good + neutral + bad;
+  const positiveValue = Math.round((good / totalFeedback) * 100);
 
   return (
     <>
@@ -67,7 +58,7 @@ function App() {
         <Feedback
           feedbacks={feedbacks}
           totalFeedback={totalFeedback}
-          good={good}
+          positiveValue={positiveValue}
           upperNameButton={upperNameButton}
         />
       ) : (

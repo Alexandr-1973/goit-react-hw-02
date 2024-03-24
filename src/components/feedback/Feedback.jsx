@@ -1,6 +1,11 @@
 import css from "./Feedback.module.css";
 
-const Feedback = ({ feedbacks, totalFeedback, good, upperNameButton }) => {
+const Feedback = ({
+  feedbacks,
+  totalFeedback,
+  positiveValue,
+  upperNameButton,
+}) => {
   return (
     <ul className={css.feedback}>
       {Object.keys(feedbacks).map((feedbacksKey) => {
@@ -17,7 +22,7 @@ const Feedback = ({ feedbacks, totalFeedback, good, upperNameButton }) => {
         <p>Total: {totalFeedback}</p>
       </li>
       <li>
-        <p>Positive: {Math.round((good / totalFeedback) * 100)}%</p>
+        <p>Positive: {positiveValue}%</p>
       </li>
     </ul>
   );
